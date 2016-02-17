@@ -18,6 +18,7 @@ describe('Airport', function() {
     var airport = new Airport();
     var plane = 'plane';
     airport.land(plane);
+    spyOn(Math, 'random').and.returnValue(4);
     airport.takeOff(plane);
     expect(airport.planes).not.toContain(plane);
   });
@@ -28,7 +29,7 @@ describe('Airport', function() {
     var airport = new Airport();
     var plane = 'plane';
     airport.land(plane);
-    // set weather to stormy
+    spyOn(Math, 'floor').and.returnValue(1);
     expect(function () { airport.takeOff(plane) }).toThrowError('Unable to takeoff during stormy weather');
   });
 });

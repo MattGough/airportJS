@@ -9,11 +9,7 @@ Airport.prototype.land = function(plane) {
 };
 
 Airport.prototype.takeOff = function(plane) {
- var weather = new Weather;
- console.log(weather.report());
- console.log("Should be false: " + (weather.report()) === 'stormy');
- if ((weather.report()) === 'stormy')
-  throw new TypeError('Unable to takeoff during stormy weather');
- else
-  return this.planes.pop() ;
+ var weather = (Math.floor(Math.random() * (6 - 1)) + 1) <= 2 ? 'stormy' : 'sunny'
+ if(weather === 'stormy') { throw new Error('Unable to takeoff during stormy weather');}
+return this.planes.pop();
 };

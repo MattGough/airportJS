@@ -20,6 +20,7 @@ describe('Airport', function() {
     });
     it('should not include plane after takeoff', function() {
       airport.land(plane);
+      spyOn(Math, "random").and.returnValue(4);
       airport.takeOff(plane);
       expect(airport.planes).not.toContain(plane);
     });
@@ -27,14 +28,13 @@ describe('Airport', function() {
   describe('#takeOff', function() {
     it('allows takoff', function() {
       airport.land(plane);
+      spyOn(Math, "random").and.returnValue(4);
       expect(airport.takeOff(plane)).toBeDefined();
     });
     it('raises an error when weather is stormy', function(){
-     var weather = new Weather();
      airport.land(plane);
-     spyOn(weather, "report").and.returnValue('stormy');
-     console.log("Current weather report: " + weather.report());
-     expect(function() {(airport.takeOff(plane))}).toThrowError(TypeError, 'Unable to takeoff during stormy weather');
+     spyOn(Math, "floor").and.returnValue(1);
+     expect(function() { airport.takeOff(plane) }).toThrowError('Unable to takeoff during stormy weather');
     });
   });
 });
