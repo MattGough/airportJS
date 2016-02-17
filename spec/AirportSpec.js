@@ -1,5 +1,6 @@
 describe('Airport', function() {
   var airport;
+  var plane = 'plane';
 
   it('exists', function() {
     airport = new Airport();
@@ -8,7 +9,13 @@ describe('Airport', function() {
 
   describe('#land', function() {
     it('lands a plane', function() {
-      expect(airport.land()).toBeDefined();
+      expect(airport.land(plane)).toBeDefined();
+    });
+  });
+
+  describe('.planes', function() {
+    it('returns landed planes', function() {
+      expect(airport.planes).toContain(plane);
     });
   });
 });
